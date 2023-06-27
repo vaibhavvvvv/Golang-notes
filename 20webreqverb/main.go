@@ -4,13 +4,16 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
 func main() {
 	fmt.Println("Learning web req verbs")
 
-	performGetRequest()
+	//performGetRequest()
+	//performPostJsonRequest()
+	performPostFormRequest()
 }
 
 func performGetRequest() {
@@ -44,3 +47,48 @@ func performGetRequest() {
 // Status Code : 200
 // Content length :  43
 // {"message":"Hello from learnCodeonline.in"}
+
+func performPostJsonRequest() {
+	const myUrl = "http://localhost:8000/post"
+
+	//to create fake json data/payload
+	requestBody := strings.NewReader(`
+		{
+			"coursename" : "golang",
+			"price" : "0",
+			"platform" : "avc.com"
+		}
+	`)
+
+	response, err := http.Post(myUrl, "application/json", requestBody)
+	if err != nil {
+		panic(err)
+	}
+
+	content, _ := ioutil.ReadAll(response.Body)
+
+	fmt.Println(string(content)) // {"coursename":"golang","price":"0","platform":"avc.com"}
+
+	defer response.Body.Close()
+}
+
+func performPostFormRequest() {
+	const myUrl = "http://localhost:8000/postform"
+
+	// to create fake form data .....url module
+	data := url.Values{}
+	data.Add("firstname", "vaibhav")
+	data.Add("lastname", "gadhave")
+	data.Add("email", "abcd@gmail.com")
+
+	response, err := http.PostForm(myUrl, data)
+	if err != nil {
+		panic(err)
+	}
+
+	content, _ := ioutil.ReadAll(response.Body)
+
+	fmt.Println(string(content)) // {"email":"abcd@gmail.com","firstname":"vaibhav","lastname":"gadhave"}
+
+	defer response.Body.Close()
+}
