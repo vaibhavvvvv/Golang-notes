@@ -33,6 +33,14 @@ func main() {
 
 	fmt.Println("high scores are : ", highScores)
 	fmt.Println("are high scores sorted ? : ", sort.IntsAreSorted(highScores))
+
+	//.......................................................................................
+	//removing element at index position from Slice
+
+	var courseList = []string{"java", "python", "c++", "Go", "Typescrit"}
+	index := 2 //element to be removed
+	courseList = append(courseList[:index], courseList[index+1:]...)
+	fmt.Println("courses after removing index element are : ", courseList)
 }
 
 //SLices: Powerful and mostly used data type in Golang
