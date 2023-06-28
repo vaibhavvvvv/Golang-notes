@@ -1,0 +1,7 @@
+github.com/gorilla/mux v1.8.0 h1:i40aqfkR1h2SlN9hojwV5ZA91wcXFOvkdNIeFDP5koI=
+github.com/gorilla/mux v1.8.0/go.mod h1:DVbg23sWSpFRCP0SfiEN6jmj59UnW/n46BH5rLB71So=
+
+
+// go.sum file used for security purposes.
+// It gives hashes for repositories. If changes are made in repo then value of hashes changes.
+// "go mod verify" compares the current hashes with verified hashes. if value of hashes do not match, malacious changes might have been done in repo.
